@@ -1,0 +1,301 @@
+/* =================== HEADER =================== */
+.main-header {
+    background: linear-gradient(rgba(13, 15, 16, 0.5), rgba(13, 15, 16, 0.5)), url('/img/nenAdmin.png');
+    background-size: cover;
+    background-position: center;
+
+}
+
+.logo img {
+    width: 149.654px;
+    height: 131.097px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.nav-item {
+    flex: 1;
+    background-color: #fff;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.nav-item a {
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-item.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
+}
+
+.nav-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* =================== FOOTER =================== */
+.footer {
+    background: url('/img/VietPrompt.png');
+    background-size: cover;
+    color: #fff;
+}
+
+.footer__title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer__list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.footer__item {
+    margin-bottom: 0.5rem;
+}
+
+.footer__link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
+
+.footer__platform img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.footer__subscribe input {
+    border-radius: 6px;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+
+.footer__bottom {
+    border-top: 1px solid #fff;
+    padding-top: 1rem;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+}
+
+.footer__social a {
+    font-size: 1.2rem;
+}
+
+.footer__social a:hover {
+    color: #0d6efd;
+}
+
+/* =================== Logo brands =================== */
+.dashboard__partners {
+    position: relative;
+    z-index: 1;
+    height: 114px;
+    margin-top: 50px;
+    background: #041B29;
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 2px solid #0E91A5;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard__partners .row {
+    height: 100%;
+    align-items: center;
+}
+
+.dashboard__partners .container {
+    height: 100%;
+}
+
+.dashboard__partners .col-auto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.dashboard__partners img {
+    max-height: 30px;
+    opacity: 0.8;
+}
+
+.dashboard__download-title {
+    color: var(--Base-Lite, #0E91A5);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+
+.contact-section {
+    background: url('/img/loginAdmin/vietpdrompt.png') no-repeat center center;
+    background-size: cover;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: #ffffff;
+}
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    gap:40px;
+    font-size: 24px;
+}
+
+.contact-info__item {
+    margin-bottom: 2rem;
+}
+
+.contact-info__item .bi {
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+    color: #00bcd4;
+    /* Màu xanh của icon */
+}
+
+.contact-info__social a {
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin-right: 3rem;
+    text-decoration: none;
+}
+
+.contact-info__social a:hover {
+    color: #00bcd4;
+}
+
+.contact-form-wrapper {
+    border-radius: 21.6px;
+    background: rgba(255, 254, 254, 0.80);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-form-wrapper .form-label {
+    color: #0E91A5;
+    /* color: #e0e0e0; */
+    font-size: 22px;
+    margin-bottom: 0.5rem;
+}
+
+/* CSS cho các nút chọn "Điều làm bạn thích thú?" */
+.contact-form-wrapper .topics-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    /* Khoảng cách giữa các nút */
+    margin-bottom: 1.5rem;
+}
+
+.contact-form-wrapper .topics-container input {
+    display: none;
+    /* Ẩn radio button gốc */
+}
+
+.contact-form-wrapper .topics-container label {
+    background-color: transparent;
+    /* color: #fff; */
+    border: 0.9px solid #787878;
+    border-radius: 50px;
+    padding: 0.5rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.85rem;
+    color: #0E91A5;
+}
+
+/* .contact-form-wrapper .topics-container label:hover {
+    border-color: #fff;
+} */
+
+/* CSS cho nút được chọn */
+.contact-form-wrapper .topics-container input:checked+label {
+    border-radius: 45px;
+    background: #0E91A5;
+    border-color: #4A909E;
+    color: #fff;
+}
+
+/* CSS cho các ô input và textarea */
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-control-custom {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #0E91A5;
+    border-radius: 0;
+    padding: 0.5rem 0;
+    color: #fff;
+    width: 100%;
+    font-size: 1rem;
+}
+
+/* CSS riêng cho textarea "Đánh giá" */
+textarea.form-control-custom {
+    border: 1.8px solid #0E91A5;
+    border-radius: 15px;
+    padding: 0.75rem;
+}
+
+textarea.form-control-custom:focus {
+    border-color: #4A909E;
+}
+
+/* CSS cho nút "Send message" */
+.btn-send {
+    border-radius: 45px;
+    background: #0E91A5;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 0.9rem;    
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-send:hover {
+    background-color: #5aaab9;
+}
+.contact-info-wrapper {
+  padding: 2.5rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

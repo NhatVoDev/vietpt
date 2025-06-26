@@ -1,0 +1,58 @@
+/* =================== FOOTER =================== */
+.footer {
+    background: url('/img/VietPrompt.png');
+    background-size: cover;
+    color: #fff;
+}
+
+.footer__title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer__list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.footer__item {
+    margin-bottom: 0.5rem;
+}
+
+.footer__link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
+
+.footer__platform img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.footer__subscribe input {
+    border-radius: 6px;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+
+.footer__bottom {
+    border-top: 1px solid #fff;
+    padding-top: 1rem;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+}
+
+.footer__social a {
+    font-size: 1.2rem;
+}
+
+.footer__social a:hover {
+    color: #0d6efd;
+}
+

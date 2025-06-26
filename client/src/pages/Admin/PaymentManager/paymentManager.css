@@ -1,0 +1,57 @@
+/* Basic styles for user manager */
+.paymentManager-section {
+  background: url("/img/nenAdmin.png") no-repeat center center;
+  background-size: cover;
+  padding: 0;
+  width: 100%;
+  backdrop-filter: blur(2px);
+}
+
+.table {
+  color: white;
+}
+
+.table thead th {
+  color: #9a9a9a;
+  border-bottom: 2px solid #1f4068;
+}
+
+.table tbody td {
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #1f4068;
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Giao dịch table */
+.paymentManager {
+  background: white !important;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.paymentManagerTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.paymentManager th {
+  text-align: left;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #555;
+}
+
+.paymentManager td {
+  padding: 16px 10px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 14px;
+}

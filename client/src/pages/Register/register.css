@@ -1,0 +1,193 @@
+/* =================== HEADER =================== */
+.main-header {
+  background: linear-gradient(rgba(13, 15, 16, 0.5), rgba(13, 15, 16, 0.5)),
+    url("/img/nenAdmin.png");
+  background-size: cover;
+  background-position: center;
+}
+.logo img {
+  width: 149.654px;
+  height: 131.097px;
+}
+.nav-menu {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  background-color: #e9ecef;
+  padding: 10px;
+  border-radius: 8px;
+}
+.nav-item {
+  flex: 1;
+  background-color: #fff;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+.nav-item a {
+  color: #000;
+  text-decoration: none;
+}
+.nav-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+}
+.nav-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* =================== FOOTER =================== */
+.footer {
+  background: url("/img/VietPrompt.png");
+  background-size: cover;
+  color: #fff;
+}
+
+.footer__title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer__list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.footer__item {
+  margin-bottom: 0.5rem;
+}
+
+.footer__link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+.footer__platform img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.footer__subscribe input {
+  border-radius: 6px;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.footer__bottom {
+  border-top: 1px solid #fff;
+  padding-top: 1rem;
+  margin-top: 2rem;
+  font-size: 0.875rem;
+}
+
+.footer__social a {
+  font-size: 1.2rem;
+}
+
+.footer__social a:hover {
+  color: #0d6efd;
+}
+/* =================== Logo brands =================== */
+.dashboard__partners {
+  position: relative;
+  z-index: 1;
+  height: 114px;
+  margin-top: 50px;
+  background: #041b29;
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 2px solid #0e91a5;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard__partners .row {
+  height: 100%;
+  align-items: center;
+}
+
+.dashboard__partners .container {
+  height: 100%;
+}
+
+.dashboard__partners .col-auto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.dashboard__partners img {
+  max-height: 30px;
+  opacity: 0.8;
+}
+.dashboard__download-title {
+  color: var(--Base-Lite, #0e91a5);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+/* ===================  REGISTER =================== */
+.register-form-section {
+  background: url("/img/loginAdmin/vietpdrompt.png") no-repeat center center;
+  background-size: cover;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+.title-from {
+  color: var(--Noble-Black-0, #fff);
+  font-family: "Plus Jakarta Sans";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36.96px;
+}
+.btn-dkgg {
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 1px solid #ebebeb;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.btn-dkgg:hover,
+.btn-dkgg:focus,
+.btn-dkgg:active {
+  background-color: white;
+  color: black;
+  border-color: #ccc;
+  box-shadow: none;
+  cursor: default;
+}
+.label-form {
+  color: var(--Noble-Black-300, #9b9c9e);
+  font-family: "Plus Jakarta Sans";
+  font-size: 11.76px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16.8px;
+  letter-spacing: 0.126px;
+}

@@ -1,0 +1,408 @@
+/* =================== HEADER =================== */
+.main-header {
+    background: linear-gradient(rgba(13, 15, 16, 0.5), rgba(13, 15, 16, 0.5)), url('/img/nenAdmin.png');
+    background-size: cover;
+    background-position: center;
+
+}
+.logo img {
+    width: 149.654px;
+    height: 131.097px;
+}
+.nav-menu {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 8px;
+}
+.nav-item {
+    flex: 1;
+    background-color: #fff;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+.nav-item a {
+    color: #000;
+    text-decoration: none;
+}
+.nav-item.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
+}
+.nav-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* =================== FOOTER =================== */
+.footer {
+    background: url('/img/VietPrompt.png');
+    background-size: cover;
+    color: #fff;
+}
+
+.footer__title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer__list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.footer__item {
+    margin-bottom: 0.5rem;
+}
+
+.footer__link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
+
+.footer__platform img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.footer__subscribe input {
+    border-radius: 6px;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+
+.footer__bottom {
+    border-top: 1px solid #fff;
+    padding-top: 1rem;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+}
+
+.footer__social a {
+    font-size: 1.2rem;
+}
+
+.footer__social a:hover {
+    color: #0d6efd;
+}
+/* =================== Logo brands =================== */
+.dashboard__partners {
+    position: relative;
+    z-index: 1;
+    height: 114px;
+    margin-top: 50px;
+    background: #041B29;
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 2px solid #0E91A5;
+    display:flex;
+    align-items: center;
+}
+
+.dashboard__partners .row {
+    height: 100%;
+    align-items: center;
+}
+
+.dashboard__partners .container {
+    height: 100%;
+}
+
+.dashboard__partners .col-auto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.dashboard__partners img {
+    max-height: 30px;
+    opacity: 0.8;
+}
+.dashboard__download-title{
+    color: var(--Base-Lite, #0E91A5);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 24px; 
+    text-transform: uppercase;
+}
+
+.press-section {
+    position: relative;
+    z-index: 1;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-top: 40px;
+}
+
+.press-section img:hover {
+    filter: none;
+    opacity: 1;
+}
+/* =================== detail-prompt-section =================== */
+.detail-prompt-section {
+    color: white;
+    position: relative;
+    overflow: hidden;
+    background: url('/img/nenAdmin.png') no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    filter: brightness(0.9);
+}
+
+
+/* Artist Info Block (previously card) */
+.artist-info-block {
+    height: 100%; 
+    display: flex; /* Biến nó thành một flex container */
+    flex-direction: column; /* Xếp chồng các phần tử con theo chiều dọc */
+    justify-content: flex-start; /* Ban đầu căn chỉnh các mục ở đầu */
+}
+
+/* Badges/Tags styles */
+.detail-prompt-section .badge {
+    background: #5DC7DB;
+    color:#000;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.detail-prompt-section .badge1 {
+    color:#06B089;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.detail-prompt-section .badge2 {
+    color:#5DC7DB;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.button-title{
+    border-radius: 19px;
+    border: 0.76px solid #0E91A5;
+    background: #5DC7DB;
+
+}
+.badge-style {
+    background-color: var(--color-badge-style) !important;
+}
+
+.badge-category {
+    background-color: var(--color-badge-category) !important;
+    color: #fff;
+}
+
+.badge-id {
+    background-color: var(--color-badge-id) !important;
+}
+
+.badge-download-status {
+    background-color: var(--color-badge-download-status) !important;
+}
+
+.badge-number {
+    background-color: var(--color-badge-number) !important;
+    color: #000 !important;
+}
+
+/* Text colors within the main content block */
+.detail-prompt-section .text-muted {
+    color: var(--color-muted-text) !important;
+}
+
+/* Titles and Dates */
+.detail-prompt-section h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.detail-prompt-section .d-flex.flex-column .text-muted.small {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+.detail-prompt-section .text-end.text-muted.small {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Artist Info Block specific text */
+.artist-info-block h6 {
+    color: #fff;
+    font-weight: 600;
+}
+.artist-info-block small {
+    color: var(--color-muted-text) !important;
+}
+
+.btn-follow {
+    color: #000;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+}
+.btn-follow:hover {
+    background-color: var(--color-button-primary);
+    color: #fff;
+}
+
+.btn-add-favorite,
+.btn-create-prompt {
+    background-color: var(--color-button-primary);
+    border-color: var(--color-button-primary);
+    color: #5DC7DB;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+}
+.btn-add-favorite:hover,
+.btn-create-prompt:hover {
+    background-color: #0a7a8d;
+    border-color: #0a7a8d;
+}
+
+/* Image info text below preview images */
+.detail-prompt-section .col-6 > .text-muted.small {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--color-muted-text) !important;
+}
+
+/* Bottom text "Crystalpunk Anime..." */
+.title-botom span {
+    color: #D34C93;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem !important;
+}
+.title-botom p {
+    color: yellow;
+    font-size: 0.9rem;
+}
+.group-info{
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 4.56px;
+    border: 0.76px solid #0E91A5;
+    background: #5DC7DB;
+    box-shadow: 0px 0px 1.52px 0px rgba(23, 26, 31, 0.12), 0px 0px 0.76px 0px rgba(23, 26, 31, 0.07);
+}
+.main-content-block-button{
+    border-radius: 19px;
+    border: 0.76px solid #0E91A5;
+    background: #14131B;
+}
+/* Exclusive Version Details Block */
+.exclusive-details-block {
+    padding: 10px; 
+    border-radius: 4.56px;
+    border: 0.76px solid #0E91A5;
+    background: #0E91A5; 
+    box-shadow: 0px 0px 1.52px 0px rgba(23, 26, 31, 0.12), 0px 0px 0.76px 0px rgba(23, 26, 31, 0.07);
+    color: #000; 
+}
+
+.verified-text {
+    color: #5DC7DB !important; /* Specific color for "Verified" text */
+    font-weight: bold;
+    margin-bottom: 10px; /* Increased margin for separation from the title */
+    display: block; /* Ensure it takes its own line */
+    font-size: 0.85rem;
+
+}
+
+.exclusive-details-block .exclusive-title {
+    color: #C3DEFF; /* Brighter blue for the title */
+    font-weight: bold; /* Adjusted font weight */
+    font-size: 1rem; /* Adjust font size as needed, might not be a standard h6 size */
+    margin-bottom: 15px; /* Spacing below the title */
+    border: 0.76px solid #5DC7DB;
+    padding: 5px;
+}
+
+/* New styling for the content within the exclusive details */
+.exclusive-details-block .content-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr; /* Two columns: one for labels, one for values */
+    gap: 10px 5px; /* Row and column gap */
+    align-items: start; /* Align items to the start of their cells */
+    padding: 10px;
+    border: 0.76px solid #5DC7DB;
+}
+
+.exclusive-details-block .content-grid div {
+    font-size: 0.85rem; /* Consistent font size for all text in this section */
+    color: #B5E4F0; /* Light blue for labels like "Downloads", "Base Model", "Description" */
+}
+
+.exclusive-details-block .content-grid div.value {
+    color: #fff; /* White for the values like "968", "Downloading disabled by author", "FLUX1" */
+}
+
+.exclusive-details-block .content-grid .value strong {
+    font-weight: normal; /* Ensure strong tags don't bold the text if not desired */
+}
+
+.exclusive-details-block .content-grid .value .lora-badge {
+    background-color: #000; /* Green background for LORA */
+    color: #06B089; /* White text for LORA */
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem; /* Smaller font size for the badge */
+    font-weight: bold;
+    display: inline-block; /* Allows padding and margin */
+    margin-bottom: 5px; /* Spacing below LORA badge */
+}
+
+/* Specific styling for the LORA and 968 lines */
+.exclusive-details-block .content-grid div:nth-child(even) { 
+    color: #fff;
+}
+
+.exclusive-details-block .content-grid div:nth-child(even):first-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.exclusive-details-block .content-grid div:nth-child(even):first-child span:first-child {
+    margin-bottom: 5px;
+}
+
+
+.exclusive-details-block .content-grid div:nth-child(odd):last-child {
+    align-self: start;
+}
+.group-Exclusive-Version-Details{
+    margin-top: auto;
+}
+.row.g-3.mb-4 .col-lg-8 img { 
+    max-width: 100%; 
+    height: auto;    
+    display: block; 
+}

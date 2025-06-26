@@ -1,0 +1,162 @@
+/* =================== SIDEBAR =================== */
+.sidebar {
+  background: linear-gradient(rgba(13, 15, 16, 0.5), rgba(13, 15, 16, 0.5)),
+    url("/img/nenAdmin.png");
+  background-size: cover;
+  background-position: center;
+
+  color: #fff;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.avatarSide {
+  position: relative;
+  display: flex;
+  padding: 0px 0px 43.776px 43.776px;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 23.04px;
+  background: #0e91a5;
+}
+
+.avatar.small {
+  width: 35px;
+  height: 35px;
+}
+
+.avatar img {
+  width: 35px;
+  height: 35px;
+  margin-right: -10px;
+}
+
+.sidebar__name {
+  font-weight: bold;
+}
+
+.sidebar__status {
+  color: #00ff95;
+  font-size: 0.8rem;
+}
+
+.sidebar__divider {
+  border: none;
+  border-top: 1px solid #2d3748;
+  margin: 15px 0;
+}
+
+.sidebar__section-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.btn_click {
+  margin-left: auto;
+  color: #0e91a5;
+  text-align: center;
+  font-family: "Plus Jakarta Sans";
+  font-size: 13.824px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20.736px;
+  letter-spacing: 0.173px;
+  border-radius: 4.608px;
+  border: 1.152px solid var(--Glass-Stroke, rgba(255, 255, 255, 0.08));
+  background: var(
+    --Glass-Fill,
+    linear-gradient(
+      118deg,
+      rgba(215, 237, 237, 0.16) -47.79%,
+      rgba(204, 235, 235, 0) 100%
+    )
+  );
+  box-shadow: 0px 1.152px 2.304px -1.152px rgba(0, 0, 0, 0.05),
+    0px 1.152px 3.456px 0px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar__menu {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.sidebar__menu li {
+  /* padding: 10px; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar__menu li:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar__menu li img {
+  margin-top: 24px;
+}
+
+.icon {
+  width: 20px;
+  text-align: center;
+}
+
+.icon.green {
+  color: #00ff95;
+}
+
+.icon.red {
+  color: #ff6666;
+}
+
+.icon.orange {
+  color: #ffaa00;
+}
+
+.icon.blue {
+  color: #00aaff;
+}
+
+.badge {
+  background: #1f2937;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: #ccc;
+}
+
+.sidebar__account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 10px;
+}
+.sidebar__spacer {
+  flex-grow: 1;
+}
+
+.sidebar__account-type {
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.sidebar__account-badge {
+  font-size: 0.75rem;
+  color: #00ff95;
+}
