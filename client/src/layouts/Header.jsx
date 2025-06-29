@@ -18,6 +18,9 @@ const Header = () => {
         <div className="nav-item" onClick={() => navigate("/")}>
           Giới thiệu
         </div>
+        <div className="nav-item" onClick={() => navigate("/library")}>
+          Thư viện
+        </div>
         <div className="nav-item" onClick={() => navigate("/package")}>
           Gói dịch vụ
         </div>
