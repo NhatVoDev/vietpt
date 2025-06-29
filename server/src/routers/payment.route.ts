@@ -8,6 +8,7 @@ const paymentRouter = Router()
 // Routes công khai cho callback từ VNPay
 paymentRouter.get('/vnpay-return', asyncHandler(PaymentController.vnpayReturn))
 paymentRouter.get('/vnpay-ipn', asyncHandler(PaymentController.vnpayIpn))
+paymentRouter.post('/payos-webhook', asyncHandler(PaymentController.payosWebhook))
 
 paymentRouter.use(authentication)
 paymentRouter.post('/create', asyncHandler(PaymentController.createPayment))

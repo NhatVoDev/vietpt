@@ -406,3 +406,27 @@
     height: auto;    
     display: block; 
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+    /* Cao hơn các element khác */
+}
+
+.modal-content {
+    background-color: #1e1e2d;
+    /* Màu nền tối giống theme của bạn */
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #3a3a4a;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }

@@ -14,14 +14,38 @@ class PaymentController {
       throw new BadRequestError(error.errors.map((err) => err.message).join(', '))
     }
 
-    new OK({
-      message: 'Payment created successfully',
-      metadata: await paymentService.createVnpayPayment({
+    let paymentResult
+
+    if (paymentMethod === 'vnpay') {
+      paymentResult = await paymentService.createVnpayPayment({
         user: req.user._id,
         currency: currency,
         ipAddress: req.ip || '127.0.0.1',
         packageId
       })
+    } else if (paymentMethod === 'payos') {
+      paymentResult = await paymentService.createPayosPayment({
+        user: req.user._id,
+        currency: currency,
+        packageId
+      })
+    } else {
+      throw new BadRequestError('Invalid payment method')
+    }
+
+    // new OK({
+    //   message: 'Payment created successfully',
+    //   metadata: await paymentService.createVnpayPayment({
+    //     user: req.user._id,
+    //     currency: currency,
+    //     ipAddress: req.ip || '127.0.0.1',
+    //     packageId
+    //   })
+    // }).send(res)
+
+    new OK({
+      message: 'Payment link created successfully',
+      metadata: paymentResult
     }).send(res)
   }
 
@@ -84,6 +108,27 @@ class PaymentController {
       message: 'Get all payments successfully',
       metadata: paymentsData
     }).send(res)
+  }
+
+  /**
+   * TẠO MỚI: Xử lý webhook từ PayOS
+   */
+  public static async payosWebhook(req: CustomRequest, res: Response) {
+    try {
+      await paymentService.processPayosWebhook(req.body);
+      res.status(200).json({
+          "error": 0,
+          "message": "Success",
+          "data": null
+      });
+    } catch (error) {
+      console.error('PayOS Webhook controller error:', error)
+      res.status(500).json({
+          "error": -1,
+          "message": "Webhook processing failed",
+          "data": null
+      });
+    }
   }
 }
 
