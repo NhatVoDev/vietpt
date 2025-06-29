@@ -18,7 +18,7 @@ const PaymentSchema = new Schema<IPaymentDocument>(
     },
     paymentMethod: {
       type: String,
-      enum: ['credit_card', 'momo', 'zalopay', 'paypal', 'cash', 'bank_transfer'],
+      enum: ['credit_card', 'momo', 'zalopay', 'paypal', 'cash', 'bank_transfer', 'payos'],
       required: true
     },
     status: {

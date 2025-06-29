@@ -20,6 +20,8 @@ const PackageDetails = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { handleCreatePayment } = usePayment();
 
+  const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
+
   // Comment states
   const [comments, setComments] = useState([]);
   const [myComment, setMyComment] = useState(null);
@@ -183,6 +185,36 @@ const PackageDetails = () => {
     }
   };
 
+  const PaymentMethodModal = ({ isOpen, onClose, onSelectMethod, price, packageId }) => {
+    if (!isOpen) return null;
+  
+    return (
+      <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-content text-white" onClick={(e) => e.stopPropagation()}>
+          <h4 className="mb-4">Chọn phương thức thanh toán</h4>
+          <div className="d-grid gap-3">
+            <button className="btn btn-primary btn-lg" onClick={() => onSelectMethod('vnpay')}>
+              Thanh toán qua VNPay
+            </button>
+            <button className="btn btn-info btn-lg" onClick={() => onSelectMethod('payos')}>
+              Thanh toán qua PayOS (QR, Thẻ nội địa/quốc tế)
+            </button>
+          </div>
+          <button className="btn btn-secondary mt-4" onClick={onClose}>Hủy</button>
+        </div>
+      </div>
+    );
+  };
+
+  // --- START: Hàm xử lý khi chọn phương thức thanh toán ---
+  const handleSelectPaymentMethod = (method) => {
+    if (packageDetail) {
+      handleCreatePayment(packageDetail.price, packageDetail._id, method);
+      setPaymentModalOpen(false); // Đóng modal sau khi gọi API
+    }
+  };
+  // --- END: Hàm xử lý khi chọn phương thức thanh toán ---
+
   return (
     <section className="detail-prompt-section p-5">
       <div className="container-fluid">
@@ -300,12 +332,7 @@ const PackageDetails = () => {
                     {user._id !== packageDetail?.user?._id && (
                       <button
                         className="btn btn-create-prompt mb-3"
-                        onClick={() =>
-                          handleCreatePayment(
-                            packageDetail?.price,
-                            packageDetail?._id
-                          )
-                        }
+                        onClick={() => setPaymentModalOpen(true)}
                       >
                         Mua
                       </button>
@@ -543,6 +570,13 @@ const PackageDetails = () => {
           )}
         </div>
       </div>
+       {/* --- START: Render Modal --- */}
+       <PaymentMethodModal
+        isOpen={isPaymentModalOpen}
+        onClose={() => setPaymentModalOpen(false)}
+        onSelectMethod={handleSelectPaymentMethod}
+      />
+      {/* --- END: Render Modal --- */}
     </section>
   );
 };

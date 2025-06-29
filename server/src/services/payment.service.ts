@@ -7,6 +7,9 @@ import dotenv from 'dotenv'
 import { HashAlgorithm, VNPay } from 'vnpay'
 import PaymentModel from '@/models/payment.model.js'
 import mongoose from 'mongoose'
+import PayOS from '@payos/node'
+import TransactionLogModel from '@/models/transactionLog.model.js';
+import LogService from '@/services/log.service.js'
 dotenv.config()
 
 interface VnpayPaymentData {
@@ -14,6 +17,12 @@ interface VnpayPaymentData {
   currency: string
   ipAddress: string
   packageId: string
+}
+
+interface PayosPaymentData {
+  user: string | mongoose.Types.ObjectId;
+  currency: number;
+  packageId: string | mongoose.Types.ObjectId;
 }
 
 interface VnpParams {
@@ -28,6 +37,10 @@ class PaymentService {
   private vnp_ApiUrl: string
   private vnpay: any
 
+  private payos: PayOS
+  private payosReturnUrl: string
+  private payosCancelUrl: string
+
   constructor() {
     this.vnp_TmnCode = process.env.VNP_TMN_CODE || ''
     this.vnp_HashSecret = process.env.VNP_HASH_SECRET || ''
@@ -41,6 +54,24 @@ class PaymentService {
       hashAlgorithm: HashAlgorithm.SHA512,
       enableLog: true
     })
+
+    // --- START: Khởi tạo PayOS ---
+    this.payosReturnUrl = process.env.PAYOS_RETURN_URL || `${process.env.FRONTEND_URL}/payment-success`
+    this.payosCancelUrl = process.env.PAYOS_CANCEL_URL || `${process.env.FRONTEND_URL}/payment-failure`
+
+    // Thêm log để kiểm tra
+    console.log('PAYOS_CLIENT_ID:', process.env.PAYOS_CLIENT_ID ? 'Loaded' : 'Missing');
+    console.log('PAYOS_API_KEY:', process.env.PAYOS_API_KEY ? 'Loaded' : 'Missing');
+    console.log('PAYOS_CHECKSUM_KEY:', process.env.PAYOS_CHECKSUM_KEY ? 'Loaded' : 'Missing');
+    console.log('PAYOS_RETURN_URL:', this.payosReturnUrl);
+    console.log('PAYOS_CANCEL_URL:', this.payosCancelUrl);
+
+    this.payos = new PayOS(
+      process.env.PAYOS_CLIENT_ID || '',
+      process.env.PAYOS_API_KEY || '',
+      process.env.PAYOS_CHECKSUM_KEY || ''
+    )
+    // --- END: Khởi tạo PayOS ---
   }
 
   async getPaymentOwner(userId: string, search = '', page = 1, limit = 10) {
@@ -291,6 +322,154 @@ class PaymentService {
         page,
         limit
       }
+    }
+  }
+
+  /**
+   * Tạo một giao dịch thanh toán qua PayOS và ghi lại log chi tiết.
+   * `transactionCode` sẽ được giữ nguyên là `orderCode` nội bộ trong suốt quá trình.
+   * @param {PayosPaymentData} data - Dữ liệu thanh toán từ controller.
+   * @returns {Promise<{paymentUrl: string, transactionCode: string}>} - URL thanh toán và mã giao dịch.
+   */
+  public async createPayosPayment(data: PayosPaymentData): Promise<{ paymentUrl: string; transactionCode: string }> {
+    const { user, currency, packageId } = data;
+    
+    // 1. Tạo orderCode duy nhất cho giao dịch
+    const orderCode = parseInt(`${Date.now()}${Math.floor(Math.random() * 1000)}`.slice(-10));
+
+    // 2. Tạo bản ghi Payment và dùng `orderCode` làm `transactionCode`
+    const newPayment = new PaymentModel({
+      user,
+      paymentMethod: 'payos',
+      currency,
+      status: 'pending',
+      package: packageId,
+      transactionCode: orderCode.toString(), // `transactionCode` sẽ là mã định danh nội bộ
+    });
+    await newPayment.save();
+
+    // 3. Chuẩn bị payload để gửi đến PayOS
+    const orderPayload = {
+      amount: currency,
+      description: `Thanh toan HD ${orderCode}`,
+      orderCode: orderCode,
+      returnUrl: this.payosReturnUrl,
+      cancelUrl: this.payosCancelUrl,
+    };
+    
+    try {
+      // 4. Gọi API của PayOS để tạo link thanh toán
+      const paymentLink = await this.payos.createPaymentLink(orderPayload);
+      
+      // 5. Ghi log cho request thành công
+      await LogService.createTransactionLog({
+        paymentId: newPayment._id,
+        orderCode: orderCode.toString(),
+        direction: 'OUTGOING',
+        url: 'payos.createPaymentLink',
+        requestPayload: orderPayload,
+        responsePayload: paymentLink,
+        statusCode: 200,
+      });
+
+      // **(ĐÃ XÓA LOGIC GHI ĐÈ `transactionCode`)**
+      // Nếu bạn muốn lưu `paymentLinkId`, hãy thêm một trường mới (vd: referenceCode) vào PaymentModel
+      // và cập nhật nó ở đây. Ví dụ:
+      // if (paymentLink.paymentLinkId) {
+      //   newPayment.referenceCode = paymentLink.paymentLinkId;
+      //   await newPayment.save();
+      // }
+
+      return {
+        paymentUrl: paymentLink.checkoutUrl,
+        transactionCode: newPayment.transactionCode, // Trả về `transactionCode` (chính là orderCode)
+      };
+
+    } catch (error) { // 'error' có kiểu `unknown`
+      
+      // 6. Ghi log chi tiết nếu có lỗi xảy ra
+      await LogService.createTransactionLog({
+        paymentId: newPayment._id,
+        orderCode: orderCode.toString(),
+        direction: 'OUTGOING',
+        url: 'payos.createPaymentLink',
+        requestPayload: orderPayload,
+        error: error,
+      });
+
+      console.error('Create PayOS payment error:', error);
+      throw error; 
+    }
+  }
+
+  /**
+   * Xử lý webhook từ PayOS để xác nhận trạng thái thanh toán.
+   * @param {any} webhookBody - Dữ liệu body của request webhook.
+   * @returns {Promise<void>}
+   */
+  public async processPayosWebhook(webhookBody: any): Promise<void> {
+    let paymentId: mongoose.Types.ObjectId | null = null;
+    const initialOrderCode = webhookBody?.data?.orderCode?.toString() ?? 'UNKNOWN';
+
+    //Bỏ qua webhook test từ PayOS
+    if (initialOrderCode === '123' || initialOrderCode === 'test') {
+      console.log('Received a test webhook from PayOS. Responding with success.');
+      return; 
+    }
+    
+    try {
+      const webhookData = this.payos.verifyPaymentWebhookData(webhookBody);
+      const orderCodeStr = webhookData.orderCode.toString();
+
+      const payment = await PaymentModel.findOne({ transactionCode: orderCodeStr, paymentMethod: 'payos' });
+      
+      if (!payment) {
+        throw new Error(`Payment record not found for orderCode: ${orderCodeStr}`);
+      }
+      paymentId = payment._id as mongoose.Types.ObjectId;
+
+      if (payment.status === 'success') {
+        console.log(`PayOS Webhook: Payment ${orderCodeStr} already processed.`);
+        return;
+      }
+      
+      if (webhookData.code === '00') {
+        payment.status = 'success';
+        payment.paidAt = new Date();
+      } else {
+        payment.status = 'failed';
+      }
+      
+      await payment.save();
+      console.log(`PayOS Webhook: Updated payment ${orderCodeStr} to status ${payment.status}`);
+      
+      await LogService.createTransactionLog({
+        paymentId,
+        orderCode: orderCodeStr,
+        direction: 'INCOMING',
+        url: '/api/payment/payos-webhook',
+        requestPayload: webhookBody,
+        responsePayload: { status: 'processed', message: `Payment updated to ${payment.status}` },
+        statusCode: 200,
+      });
+
+    } catch (error) { 
+      const logPaymentId = paymentId || new mongoose.Types.ObjectId();
+      const logOrderCode = (error instanceof Error && error.message.includes('orderCode')) 
+                           ? error.message.split(': ')[1] 
+                           : initialOrderCode;
+      
+      await LogService.createTransactionLog({
+        paymentId: logPaymentId,
+        orderCode: logOrderCode,
+        direction: 'INCOMING',
+        url: '/api/payment/payos-webhook',
+        requestPayload: webhookBody,
+        error: error,
+      });
+
+      console.error('PayOS webhook processing error:', error);
+      throw error;
     }
   }
 }
