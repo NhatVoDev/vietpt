@@ -430,3 +430,61 @@
     max-width: 500px;
     border: 1px solid #3a3a4a;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }
+
+
+/* --- START: Accordion Styles for Prompts --- */
+.prompts-section {
+    background-color: #1a1d21;
+    /* Match the dark theme */
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.accordion-item {
+    background-color: #2a2e34;
+    /* Darker item background */
+    border: 1px solid #3a3f44;
+    margin-bottom: 1rem;
+    border-radius: 8px !important;
+    /* Override Bootstrap's sharp corners */
+    overflow: hidden;
+    /* Ensure children conform to rounded corners */
+}
+
+.accordion-header .accordion-button {
+    background-color: #2a2e34;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0;
+    /* Let the parent handle radius */
+    box-shadow: none;
+    /* Remove focus shadow */
+}
+
+/* Style for the button when it's not collapsed (i.e., the content is shown) */
+.accordion-header .accordion-button:not(.collapsed) {
+    background-color: #3a3f44;
+    /* Slightly lighter when open */
+    color: #0d6efd;
+    /* Highlight color */
+}
+
+/* Change the color of the expand/collapse icon */
+.accordion-button::after {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: invert(48%) sepia(85%) saturate(2462%) hue-rotate(204deg) brightness(99%) contrast(97%);
+    /* Match the blue text color */
+}
+
+.accordion-body {
+    background-color: #212529;
+    /* Even darker for the content */
+    color: #ced4da;
+    /* Light gray for readability */
+    padding: 1.5rem;
+}
+
+/* --- END: Accordion Styles for Prompts --- */

@@ -389,6 +389,40 @@ const PackageDetails = () => {
           </div>
         </div>
 
+        {/* --- START: PROMPTS (Q&A) SECTION --- */}
+        {packageDetail?.prompts && packageDetail.prompts.length > 0 && (
+          <div className="prompts-section mt-5 text-white">
+            <h5 className="mb-4">Hướng dẫn & Hỏi đáp về Gói</h5>
+            <div className="accordion" id="promptsAccordion">
+              {packageDetail.prompts.map((prompt, index) => (
+                <div className="accordion-item" key={prompt._id || index}>
+                  <h2 className="accordion-header" id={`heading-${index}`}>
+                    <button
+                      className={`accordion-button ${index !== 0 ? 'collapsed' : ''}`}
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#collapse-${index}`}
+                      aria-expanded={index === 0 ? 'true' : 'false'}
+                      aria-controls={`#collapse-${index}`}
+                    >
+                      {prompt.question}
+                    </button>
+                  </h2>
+                  <div
+                    id={`collapse-${index}`}
+                    className={`accordion-collapse collapse ${index === 0 ? 'show' : ''}`}
+                    aria-labelledby={`heading-${index}`}
+                    data-bs-parent="#promptsAccordion"
+                  >
+                    <div className="accordion-body">{prompt.answer}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {/* --- END: PROMPTS (Q&A) SECTION --- */}
+
         <div className="press-section text-white text-center">
           <div className="d-flex justify-content-center flex-wrap gap-5 align-items-center">
             <img
