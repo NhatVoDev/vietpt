@@ -24,8 +24,8 @@ const Header = () => {
         <div className="nav-item" onClick={() => navigate("/package")}>
           Gói dịch vụ
         </div>
-        <div className="nav-item">
-          <a href="#">Dịch vụ</a>
+        <div className="nav-item" onClick={() => navigate("/Service")}>
+          Dịch vụ
         </div>
         <div className="nav-item dropdown">
           <a href="#">Đăng ký</a>

@@ -452,10 +452,10 @@ const Transaction = () => {
                 <div key={index} className="prompt-item">
                   <h5>Prompt {index + 1}</h5>
                   <p>
-                    <strong>Câu hỏi:</strong> {prompt.question}
+                    <strong>Loại Prompt:</strong> {prompt.question}
                   </p>
                   <p>
-                    <strong>Trả lời:</strong> {prompt.answer}
+                    <strong>List Prompt:</strong> {prompt.answer}
                   </p>
                 </div>
               ))}

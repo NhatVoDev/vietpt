@@ -22,7 +22,7 @@ import Provider from "./Provider";
 import PaymentManager from "./pages/Admin/PaymentManager";
 import PackageList from "./pages/PackageList";
 import LibraryPrompt from "./pages/LibraryPrompt";
-
+import ServicePage from "./pages/Service";
 function App() {
   return (
     <Routes>
@@ -89,6 +89,11 @@ export const PublicRoute = [
   {
     path: "/library",
     element: <LibraryPrompt />,
+    layout: MainLayout,
+  },
+    {
+    path: "/service",
+    element: <ServicePage />,
     layout: MainLayout,
   },
 ];

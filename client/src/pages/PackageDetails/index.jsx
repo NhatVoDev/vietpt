@@ -193,9 +193,9 @@ const PackageDetails = () => {
         <div className="modal-content text-white" onClick={(e) => e.stopPropagation()}>
           <h4 className="mb-4">Chọn phương thức thanh toán</h4>
           <div className="d-grid gap-3">
-            <button className="btn btn-primary btn-lg" onClick={() => onSelectMethod('vnpay')}>
+            {/* <button className="btn btn-primary btn-lg" onClick={() => onSelectMethod('vnpay')}>
               Thanh toán qua VNPay
-            </button>
+            </button> */}
             <button className="btn btn-info btn-lg" onClick={() => onSelectMethod('payos')}>
               Thanh toán qua PayOS (QR, Thẻ nội địa/quốc tế)
             </button>

@@ -365,14 +365,14 @@ const PackageForm = ({ visible, onCancel, initialValues = null, reset }) => {
                   onChange={(e) =>
                     handlePromptChange(index, "question", e.target.value)
                   }
-                  placeholder="Nhập câu hỏi"
+                  placeholder="Nhập loại prompt"
                 />
                 <TextArea
                   value={prompt.answer}
                   onChange={(e) =>
                     handlePromptChange(index, "answer", e.target.value)
                   }
-                  placeholder="Nhập câu trả lời"
+                  placeholder="Nhập list prompt"
                   rows={2}
                 />
                 {prompts.length > 1 && (

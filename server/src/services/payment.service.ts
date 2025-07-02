@@ -436,8 +436,10 @@ class PaymentService {
       if (webhookData.code === '00') {
         payment.status = 'success';
         payment.paidAt = new Date();
+        // await PaymentModel.updateOne({ _id: payment._id }, { status: 'success', paidAt: new Date() });
       } else {
         payment.status = 'failed';
+        // await PaymentModel.updateOne({ _id: payment._id }, { status: 'failed', paidAt: new Date() });
       }
       
       await payment.save();
