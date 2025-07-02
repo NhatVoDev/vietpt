@@ -156,9 +156,9 @@ const FavouritePage = () => {
               </div>
 
               <div className="carousel-controls text-center mt-3">
-                <button className="btn me-2">Thêm yêu thích</button>
+                {/* <button className="btn me-2">Thêm yêu thích</button>
                 <button className="btn me-2">Xem chi tiết</button>
-                <button className="btn ">Tạo prompt mới</button>
+                <button className="btn ">Tạo prompt mới</button> */}
               </div>
             </>
           ) : (
