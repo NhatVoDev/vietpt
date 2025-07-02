@@ -187,7 +187,7 @@ const Transaction = () => {
                 </tbody>
               </table>
             </div>
-
+{/* 
             <div className="d-flex justify-content-between">
               <span className="title">Thống Kê Hoạt Động</span>
             </div>
@@ -229,7 +229,7 @@ const Transaction = () => {
                   <div className="label">Payment</div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <nav
               aria-label="Phân trang giao dịch"
